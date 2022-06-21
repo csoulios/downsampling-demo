@@ -13,13 +13,15 @@ PUT /sample-01
                 "end_time": "2022-06-30T23:59:59Z"
             },
             "routing_path": [
-                "kubernetes.namespace", "kubernetes.host", "kubernetes.node","kubernetes.pod"
+                "kubernetes.namespace",
+                "kubernetes.host",
+                "kubernetes.node",
+                "kubernetes.pod"
             ],
             "number_of_replicas": 0,
             "number_of_shards": 2
         }
     },
-
     "mappings": {
         "properties": {
             "@timestamp": {
@@ -150,13 +152,7 @@ PUT /sample-01
 }
 
 
-
-
 GET /sample-01
-
-
-GET /sample-01*/_search
-
 
 /*
 
@@ -167,41 +163,48 @@ curl -s -H "Content-Type: application/json" \
 */
 
 
+
+GET /sample-01*/_search
+
+
+
+
+
 GET /sample-01*/_search
 {
-  "size": 0,
-  "aggs": {
-    "tsid": {
-      "terms": {
-        "field": "_tsid"
-      },
-      "aggs": {
-        "over_time": {
-          "date_histogram": {
-            "field": "@timestamp",
-            "fixed_interval": "1d"
-          },
-          "aggs": {
-            "min": {
-              "min": {
-                "field": "kubernetes.container.memory.usage.bytes"
-              }
+    "size": 0,
+    "aggs": {
+        "tsid": {
+            "terms": {
+                "field": "_tsid"
             },
-            "max": {
-              "max": {
-                "field": "kubernetes.container.memory.usage.bytes"
-              }
-            },
-            "avg": {
-              "avg": {
-                "field": "kubernetes.container.memory.usage.bytes"
-              }
+            "aggs": {
+                "over_time": {
+                    "date_histogram": {
+                        "field": "@timestamp",
+                        "fixed_interval": "1d"
+                    },
+                    "aggs": {
+                        "min": {
+                            "min": {
+                                "field": "kubernetes.container.memory.usage.bytes"
+                            }
+                        },
+                        "max": {
+                            "max": {
+                                "field": "kubernetes.container.memory.usage.bytes"
+                            }
+                        },
+                        "avg": {
+                            "avg": {
+                                "field": "kubernetes.container.memory.usage.bytes"
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }
 
 

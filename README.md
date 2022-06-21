@@ -1,6 +1,5 @@
 ## Demo of Downsampling action for Elasticsearch TSDB
 
-
 Run elasticsearch with the following settings:
 
 ```sh

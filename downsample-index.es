@@ -1,3 +1,5 @@
+// Downsample a single index and run aggregations
+
 DELETE /sample-01*
 
 
@@ -8,8 +10,8 @@ PUT /sample-01
         "index": {
             "mode": "time_series",
             "time_series": {
-                "start_time": "2021-04-01T00:00:00Z",
-                "end_time": "2021-04-30T23:59:59Z"
+                "start_time": "2022-06-10T00:00:00Z",
+                "end_time": "2022-06-30T23:59:59Z"
             },
             "routing_path": [
                 "kubernetes.namespace", "kubernetes.host", "kubernetes.node","kubernetes.pod"
@@ -211,3 +213,6 @@ POST /sample-01/_rollup/sample-01-rollup
 {
   "fixed_interval": "1h"
 }
+
+
+GET /sample-01-rollup

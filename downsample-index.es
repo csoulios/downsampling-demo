@@ -1,4 +1,11 @@
 // Downsample a single index and run aggregations
+/*
+
+./gradlew run -Dtests.heap.size=4G -Dtests.jvm.argline="-da" \
+     -Dtests.es.indices.lifecycle.poll_interval=60s \
+     -Dtests.es.xpack.security.enabled=false \
+     -Dtests.es.xpack.license.self_generated.type=trial
+*/
 
 DELETE /sample-01*
 

@@ -11,9 +11,7 @@ PUT _ilm/policy/datastream_policy
             "max_docs": 1
           },
           "rollup": {
-  	        "config": {
   	          "fixed_interval": "1h"
-  	        }
   	      }
         }
       }
